@@ -1,5 +1,5 @@
 package observers.interfaces;
 
-public interface StockBrokers {
+public interface StockBroker {
     void update();
 }
