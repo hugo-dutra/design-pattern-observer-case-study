@@ -11,6 +11,7 @@ import java.util.List;
 
 public class StockExchangeAdminImpl implements StockExchangeAdmin, Runnable {
     List<Asset> assetsNegociated;
+    private static final int UPDATE_INTERVAL = 250;
     private StockExchange stockExchange;
 
     public StockExchangeAdminImpl(StockExchangeImpl stockExchange) {
@@ -69,7 +70,7 @@ public class StockExchangeAdminImpl implements StockExchangeAdmin, Runnable {
         StockExchangePresenterImpl stockExchangePresenter = new StockExchangePresenterImpl(this);
         while (true) {
             try {
-                Thread.sleep(250);
+                Thread.sleep(UPDATE_INTERVAL);
                 stockExchangePresenter.displayStockExchange(assetsNegociated);
                 stockExchangePresenter.displayNegociationOptions();
                 stockExchangePresenter.displayStockBrokers();

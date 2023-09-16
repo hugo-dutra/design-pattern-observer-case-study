@@ -156,7 +156,6 @@ public class StockExchangePresenterImpl implements StockExchangePresenter {
                 }
             }
         }
-
         System.out.println("--------------------------------------------------------------");
     }
 
