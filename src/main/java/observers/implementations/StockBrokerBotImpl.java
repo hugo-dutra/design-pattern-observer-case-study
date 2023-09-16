@@ -33,7 +33,7 @@ public class StockBrokerBotImpl implements StockBrokerBot {
     private void buyAsset(Asset asset) {
         if (!assets.contains(asset) && hasEnoughBudget(asset)){
             assets.add(asset);
-            updateBudget(asset.getCurrentValue());
+            updateBudget(-asset.getCurrentValue());
         }
     }
 
@@ -46,7 +46,7 @@ public class StockBrokerBotImpl implements StockBrokerBot {
     private void sellAsset(Asset asset) {
         if (assets.contains(asset))
             assets.remove(asset);
-        updateBudget(-asset.getCurrentValue());
+        updateBudget(asset.getCurrentValue());
     }
 
     private void updateBudget(float assetValue) {
