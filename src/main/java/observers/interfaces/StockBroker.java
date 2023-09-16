@@ -8,4 +8,5 @@ public interface StockBroker {
     void update(Asset asset);
     String getBrokerName();
     List<Asset> getAssets();
+    float getBudget();
 }

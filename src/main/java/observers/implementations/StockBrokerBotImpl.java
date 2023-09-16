@@ -9,6 +9,7 @@ import java.util.List;
 public class StockBrokerBotImpl implements StockBrokerBot {
     public List<Asset> assets = new ArrayList<>();
     private String botName;
+    private float budget = 0;
     private final float buyThresholdLow;
     private final float buyThresholdHigh;
     private final float sellThresholdLow;
@@ -19,22 +20,36 @@ public class StockBrokerBotImpl implements StockBrokerBot {
             float buyThresholdLow,
             float buyThresholdHigh,
             float sellThresholdLow,
-            float sellThresholdHigh) {
+            float sellThresholdHigh,
+            float budget){
         this.botName = botName;
         this.buyThresholdLow = buyThresholdLow;
         this.buyThresholdHigh = buyThresholdHigh;
         this.sellThresholdLow = sellThresholdLow;
         this.sellThresholdHigh = sellThresholdHigh;
+        this.budget = budget;
     }
 
     private void buyAsset(Asset asset) {
-        if (!assets.contains(asset))
+        if (!assets.contains(asset) && hasEnoughBudget(asset)){
             assets.add(asset);
+            updateBudget(asset);
+        }
+    }
+
+    private boolean hasEnoughBudget(Asset asset) {
+        if (budget < asset.getCurrentValue())
+            return false;
+        return true;
     }
 
     private void sellAsset(Asset asset) {
         if (assets.contains(asset))
             assets.remove(asset);
+    }
+
+    private void updateBudget(Asset asset) {
+        budget += asset.getCurrentValueVariation();
     }
 
     @Override
@@ -53,5 +68,10 @@ public class StockBrokerBotImpl implements StockBrokerBot {
     @Override
     public List<Asset> getAssets() {
         return assets;
+    }
+
+    @Override
+    public float getBudget() {
+        return budget;
     }
 }

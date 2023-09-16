@@ -20,6 +20,7 @@ public class Main {
                 .withBuyThresholdHigh(0.1f)
                 .withSellThresholdLow(-0.5f)
                 .withSellThresholdHigh(-0.1f)
+                .withBudget(1300)
                 .build();
 
         StockBrokerImpl stockBrokerJuliana = new StockBrokerImpl.StockBrokerBuilder()
@@ -28,6 +29,7 @@ public class Main {
                 .withBuyThresholdHigh(0.8f)
                 .withSellThresholdLow(-0.2f)
                 .withSellThresholdHigh(-0.2f)
+                .withBudget(2500)
                 .build();
 
         StockBrokerImpl stockBrokerGilberto = new StockBrokerImpl.StockBrokerBuilder()
@@ -36,6 +38,7 @@ public class Main {
                 .withBuyThresholdHigh(0.12f)
                 .withSellThresholdLow(-0.3f)
                 .withSellThresholdHigh(-0.8f)
+                .withBudget(3000)
                 .build();
 
         StockBrokerImpl stockBrokerFrancisca = new StockBrokerImpl.StockBrokerBuilder()
@@ -44,6 +47,7 @@ public class Main {
                 .withBuyThresholdHigh(0.7f)
                 .withSellThresholdLow(-0.1f)
                 .withSellThresholdHigh(-0.5f)
+                .withBudget(2000)
                 .build();
 
 
@@ -55,7 +59,6 @@ public class Main {
         stockExchange.addStockBroker(stockBrokerFrancisca);
 
         // Block to add assets to the stock exchange
-
         StockExchangeAdminImpl stockExchangeAdmin = new StockExchangeAdminImpl(stockExchange);
         Thread stockExchangeAdminThread = new Thread(stockExchangeAdmin);
         stockExchangeAdminThread.start();

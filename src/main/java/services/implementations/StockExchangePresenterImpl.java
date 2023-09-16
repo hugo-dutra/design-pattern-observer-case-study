@@ -100,12 +100,16 @@ public class StockExchangePresenterImpl implements StockExchangePresenter {
                 System.out.println("Informe o limiar de venda alto:");
                 float sellHigh = scanner.nextFloat();
 
+                System.out.println("Informe o orçamento:");
+                float budget = scanner.nextFloat();
+
                 StockBrokerImpl newBroker = new StockBrokerImpl.StockBrokerBuilder()
                         .withBrokerName(brokerName)
                         .withBuyThresholdLow(buyLow)
                         .withBuyThresholdHigh(buyHigh)
                         .withSellThresholdLow(sellLow)
                         .withSellThresholdHigh(sellHigh)
+                        .withBudget(budget)
                         .build();
 
                 stockExchangeAdminImpl.getStockExchange().addStockBroker(newBroker);
@@ -128,15 +132,16 @@ public class StockExchangePresenterImpl implements StockExchangePresenter {
 
     @Override
     public void displayStockBrokers() {
-        System.out.println("-----------------------------------------------------");
-        System.out.println("| StockBroker Name  | Number of Assets             |");
-        System.out.println("-----------------------------------------------------");
+        System.out.println("--------------------------------------------------------------");
+        System.out.println("| StockBroker Name  | Number of Assets  | Budget             |");
+        System.out.println("--------------------------------------------------------------");
 
         for (StockBroker stockBroker : stockExchangeAdminImpl.getStockBrokers()) {
             String brokerName = stockBroker.getBrokerName();
             int numberOfAssets = stockBroker.getAssets().size();
+            float budget = stockBroker.getBudget();
 
-            System.out.printf("| %-18s| %-27d|%n", brokerName, numberOfAssets);
+            System.out.printf("| %-18s| %-18d| %-18.2f|%n", brokerName, numberOfAssets, budget);
 
             // Exibir os assets desse StockBroker, se houver
             if (numberOfAssets > 0) {
@@ -152,8 +157,9 @@ public class StockExchangePresenterImpl implements StockExchangePresenter {
             }
         }
 
-        System.out.println("-----------------------------------------------------");
+        System.out.println("--------------------------------------------------------------");
     }
+
 
 
 

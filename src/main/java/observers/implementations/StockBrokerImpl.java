@@ -9,14 +9,15 @@ public class StockBrokerImpl implements StockBroker {
     private String brokerName = "";
     private StockBrokerBotImpl bot;
 
-    private StockBrokerImpl(String brokerName, float buyThresholdLow, float buyThresholdHigh, float sellThresholdLow, float sellThresholdHigh) {
+    private StockBrokerImpl(String brokerName, float buyThresholdLow, float buyThresholdHigh, float sellThresholdLow, float sellThresholdHigh, float budget) {
         this.brokerName = brokerName;
         bot = new StockBrokerBotImpl(
                 "Bot's " + brokerName,
                 buyThresholdLow,
                 buyThresholdHigh,
                 sellThresholdLow,
-                sellThresholdHigh
+                sellThresholdHigh,
+                budget
         );
     }
 
@@ -29,12 +30,18 @@ public class StockBrokerImpl implements StockBroker {
         return bot.getAssets();
     }
 
+    @Override
+    public float getBudget() {
+        return bot.getBudget();
+    }
+
     public static class StockBrokerBuilder{
         String brokerName = "";
         float buyThresholdLow = 0;
         float buyThresholdHigh = 0;
         float sellThresholdLow = 0;
         float sellThresholdHigh = 0;
+        float budget = 0;
 
         public StockBrokerBuilder withBrokerName(String brokerName){
             this.brokerName = brokerName;
@@ -61,8 +68,13 @@ public class StockBrokerImpl implements StockBroker {
             return this;
         }
 
+        public StockBrokerBuilder withBudget(float budget){
+            this.budget = budget;
+            return this;
+        }
+
         public StockBrokerImpl build(){
-            return new StockBrokerImpl(brokerName, buyThresholdLow, buyThresholdHigh, sellThresholdLow, sellThresholdHigh);
+            return new StockBrokerImpl(brokerName, buyThresholdLow, buyThresholdHigh, sellThresholdLow, sellThresholdHigh, budget);
         }
     }
 
