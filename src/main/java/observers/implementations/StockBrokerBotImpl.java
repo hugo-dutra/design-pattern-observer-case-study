@@ -42,8 +42,10 @@ public class StockBrokerBotImpl implements StockBrokerBot {
         System.out.println("Stock broker bot updated with asset: " + asset);
         if (asset.getCurrentValueVariation() > buyThresholdHigh) {
             buyAsset(asset);
+            System.out.printf("Bot %s bought asset %s\n", botName, asset.getAssetName());
         } else if (asset.getCurrentValueVariation() < buyThresholdLow) {
             sellAsset(asset);
+            System.out.printf("Bot %s sold asset %s\n", botName, asset.getAssetName());
         }
     }
 
