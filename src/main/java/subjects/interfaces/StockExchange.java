@@ -14,5 +14,6 @@ public interface StockExchange {
 
     void addStockBroker(StockBroker stockBroker);
     void removeStockBroker(StockBroker stockBroker);
-    void notifyStockBrokers(Asset asset);
+
+    void updateAssetsInfo(Asset asset);
 }

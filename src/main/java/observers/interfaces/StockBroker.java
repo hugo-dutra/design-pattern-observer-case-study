@@ -1,5 +1,7 @@
 package observers.interfaces;
 
+import models.Asset;
+
 public interface StockBroker {
-    void update();
+    void update(Asset asset);
 }

@@ -2,8 +2,9 @@ package observers.interfaces;
 
 import models.Asset;
 
+import java.util.List;
+
 public interface StockBrokerBot {
-    void buyAsset(Asset asset);
-    void sellAsset(Asset asset);
-    void update();
+    void update(Asset asset);
+    List<Asset> getAssets();
 }

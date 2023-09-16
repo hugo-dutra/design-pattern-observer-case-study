@@ -30,7 +30,8 @@ public class Asset {
         if (valueHistory.size() < 2) {
             return 0;
         }
-        return (currentValue - valueHistory.get(valueHistory.size() - 2)) / valueHistory.get(valueHistory.size() - 2) * 100;
+        return (currentValue - valueHistory.get(valueHistory.size() - 2)) /
+                valueHistory.get(valueHistory.size() - 2) * 100;
     }
 
     public String getAssetName() {
@@ -45,4 +46,15 @@ public class Asset {
                 ", valueHistory=" + valueHistory +
                 '}';
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) return false;
+        if (!(obj instanceof Asset))
+            return false;
+        if (obj == this)
+            return true;
+        return this.getAssetName().equals(((Asset) obj).getAssetName());
+    }
+
 }
