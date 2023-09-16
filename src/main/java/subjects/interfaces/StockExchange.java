@@ -11,6 +11,7 @@ public interface StockExchange {
     void updateAsset(Asset asset);
 
     List<Asset> getAssets();
+    List<StockBroker> getStockBrokers();
 
     void addStockBroker(StockBroker stockBroker);
     void removeStockBroker(StockBroker stockBroker);

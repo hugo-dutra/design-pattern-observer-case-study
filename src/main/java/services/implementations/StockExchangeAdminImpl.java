@@ -1,6 +1,7 @@
 package services.implementations;
 
 import models.Asset;
+import observers.interfaces.StockBroker;
 import services.interfaces.StockExchangeAdmin;
 import subjects.implementations.StockExchangeImpl;
 import subjects.interfaces.StockExchange;
@@ -50,13 +51,28 @@ public class StockExchangeAdminImpl implements StockExchangeAdmin, Runnable {
     }
 
     @Override
+    public List<StockBroker> getStockBrokers() {
+        return stockExchange.getStockBrokers();
+    }
+
+    @Override
+    public void addAssetToStockBroker(Asset asset, StockBroker stockBroker) {
+        if (!assetsNegociated.contains(asset))
+            throw new UnsupportedOperationException("Asset negociated does not exist");
+        if (!stockExchange.getStockBrokers().contains(stockBroker))
+            throw new UnsupportedOperationException("Stock broker does not exist");
+        stockBroker.update(asset);
+    }
+
+    @Override
     public void run() {
         StockExchangePresenterImpl stockExchangePresenter = new StockExchangePresenterImpl(this);
         while (true) {
             try {
-                Thread.sleep(1000);
+                Thread.sleep(250);
                 stockExchangePresenter.displayStockExchange(assetsNegociated);
                 stockExchangePresenter.displayNegociationOptions();
+                stockExchangePresenter.displayStockBrokers();
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }

@@ -3,6 +3,8 @@ package observers.implementations;
 import models.Asset;
 import observers.interfaces.StockBroker;
 
+import java.util.List;
+
 public class StockBrokerImpl implements StockBroker {
     private String brokerName = "";
     private StockBrokerBotImpl bot;
@@ -20,6 +22,11 @@ public class StockBrokerImpl implements StockBroker {
 
     public String getBrokerName() {
         return brokerName;
+    }
+
+    @Override
+    public List<Asset> getAssets() {
+        return bot.getAssets();
     }
 
     public static class StockBrokerBuilder{

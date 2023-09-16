@@ -1,6 +1,7 @@
 package services.interfaces;
 
 import models.Asset;
+import observers.interfaces.StockBroker;
 import subjects.interfaces.StockExchange;
 
 import java.util.List;
@@ -11,4 +12,6 @@ public interface StockExchangeAdmin {
     void updateAsset(Asset asset);
     public StockExchange getStockExchange();
     List<Asset> getAssets();
+    List<StockBroker> getStockBrokers();
+    void addAssetToStockBroker(Asset asset, StockBroker stockBroker);
 }

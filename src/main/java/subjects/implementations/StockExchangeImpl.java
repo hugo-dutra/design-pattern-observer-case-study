@@ -11,6 +11,7 @@ import java.util.List;
 public class StockExchangeImpl implements StockExchange {
     List<Asset> assetsNegociated = new ArrayList<>();
     List<StockBroker> stockBrokers = new ArrayList<>();
+
     @Override
     public void addAsset(Asset asset) {
         if (assetsNegociated.contains(asset))
@@ -30,7 +31,7 @@ public class StockExchangeImpl implements StockExchange {
     @Override
     public void updateAsset(Asset asset) {
         int assetIndex = assetsNegociated.indexOf(asset);
-        if(assetIndex == -1)
+        if (assetIndex == -1)
             throw new UnsupportedOperationException("Asset negociated does not exist");
         assetsNegociated.set(assetIndex, asset);
         notifyStockBrokers(asset);
@@ -39,6 +40,11 @@ public class StockExchangeImpl implements StockExchange {
     @Override
     public List<Asset> getAssets() {
         return assetsNegociated;
+    }
+
+    @Override
+    public List<StockBroker> getStockBrokers() {
+        return stockBrokers;
     }
 
     @Override

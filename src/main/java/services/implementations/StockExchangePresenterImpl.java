@@ -2,7 +2,10 @@ package services.implementations;
 
 import models.Asset;
 import observers.implementations.StockBrokerImpl;
+import observers.interfaces.StockBroker;
 import services.interfaces.StockExchangePresenter;
+import subjects.interfaces.StockExchange;
+
 import java.util.Scanner;
 import java.util.List;
 
@@ -57,14 +60,28 @@ public class StockExchangePresenterImpl implements StockExchangePresenter {
                 assetChoice = scanner.next();
                 System.out.println("Informe o preço:");
                 price = scanner.nextFloat();
-                stockExchangeAdminImpl.removeAsset(new Asset(price, assetChoice));
+                Asset assetToRemove = stockExchangeAdminImpl
+                        .getStockExchange()
+                        .getAssets()
+                        .stream()
+                        .filter(asset -> asset.getAssetName().equals(assetChoice)).findFirst().orElse(null);
+                stockExchangeAdminImpl.removeAsset(assetToRemove);
                 break;
             case 3:
                 System.out.println("Defina o ativo:");
                 assetChoice = scanner.next();
                 System.out.println("Informe o preço:");
                 price = scanner.nextFloat();
-                stockExchangeAdminImpl.updateAsset(new Asset(price, assetChoice));
+                Asset assetToUpdate  =
+                    stockExchangeAdminImpl
+                        .getStockExchange()
+                        .getAssets()
+                        .stream()
+                        .filter(asset -> asset.getAssetName().equals(assetChoice))
+                        .findFirst()
+                        .orElse(null);
+                assetToUpdate.setCurrentValue(price);
+                stockExchangeAdminImpl.updateAsset(assetToUpdate);
                 break;
             case 4:
                 // Adicionar um broker
@@ -90,6 +107,7 @@ public class StockExchangePresenterImpl implements StockExchangePresenter {
                         .withSellThresholdLow(sellLow)
                         .withSellThresholdHigh(sellHigh)
                         .build();
+
                 stockExchangeAdminImpl.getStockExchange().addStockBroker(newBroker);
                 break;
             case 5:
@@ -107,5 +125,36 @@ public class StockExchangePresenterImpl implements StockExchangePresenter {
                 break;
         }
     }
+
+    @Override
+    public void displayStockBrokers() {
+        System.out.println("-----------------------------------------------------");
+        System.out.println("| StockBroker Name  | Number of Assets             |");
+        System.out.println("-----------------------------------------------------");
+
+        for (StockBroker stockBroker : stockExchangeAdminImpl.getStockBrokers()) {
+            String brokerName = stockBroker.getBrokerName();
+            int numberOfAssets = stockBroker.getAssets().size();
+
+            System.out.printf("| %-18s| %-27d|%n", brokerName, numberOfAssets);
+
+            // Exibir os assets desse StockBroker, se houver
+            if (numberOfAssets > 0) {
+                System.out.println("    Assets:");
+                for (Asset asset : stockBroker.getAssets()) {
+                    String assetName = asset.getAssetName();
+                    float currentValue = asset.getCurrentValue();
+                    float valueVariation = asset.getCurrentValueVariation();
+
+                    // Ajustei o espaçamento aqui para evitar a quebra de linha
+                    System.out.printf("      %-12s %-14.2f %-19.2f%n", assetName, currentValue, valueVariation);
+                }
+            }
+        }
+
+        System.out.println("-----------------------------------------------------");
+    }
+
+
 
 }
