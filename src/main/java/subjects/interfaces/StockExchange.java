@@ -14,6 +14,7 @@ public interface StockExchange {
 
     void addStockBroker(StockBroker stockBroker);
     void removeStockBroker(StockBroker stockBroker);
+    void removeStockBrokerByName(String stockBrokername);
+    void updateStockBrokerByName(String stockBrokername);
 
-    void updateAssetsInfo(Asset asset);
 }

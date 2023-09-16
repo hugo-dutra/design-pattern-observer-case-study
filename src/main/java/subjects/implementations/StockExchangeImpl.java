@@ -1,6 +1,7 @@
 package subjects.implementations;
 
 import models.Asset;
+import observers.implementations.StockBrokerImpl;
 import observers.interfaces.StockBroker;
 import subjects.interfaces.StockExchange;
 
@@ -15,6 +16,7 @@ public class StockExchangeImpl implements StockExchange {
         if (assetsNegociated.contains(asset))
             throw new UnsupportedOperationException("Asset negociated already exists");
         assetsNegociated.add(asset);
+        notifyStockBrokers(asset);
     }
 
     @Override
@@ -22,6 +24,7 @@ public class StockExchangeImpl implements StockExchange {
         if (!assetsNegociated.contains(asset))
             throw new UnsupportedOperationException("Asset negociated does not exist");
         assetsNegociated.remove(asset);
+        notifyStockBrokers(asset);
     }
 
     @Override
@@ -30,6 +33,7 @@ public class StockExchangeImpl implements StockExchange {
         if(assetIndex == -1)
             throw new UnsupportedOperationException("Asset negociated does not exist");
         assetsNegociated.set(assetIndex, asset);
+        notifyStockBrokers(asset);
     }
 
     @Override
@@ -51,20 +55,32 @@ public class StockExchangeImpl implements StockExchange {
         stockBrokers.remove(stockBroker);
     }
 
+    @Override
+    public void removeStockBrokerByName(String stockBrokername) {
+        for (StockBroker stockBroker : stockBrokers) {
+            if (stockBroker.getBrokerName().equals(stockBrokername)) {
+                stockBrokers.remove(stockBroker);
+                return;
+            }
+        }
+        throw new UnsupportedOperationException("Stock broker does not exist");
+    }
+
+    @Override
+    public void updateStockBrokerByName(String stockBrokername) {
+        for (StockBroker stockBroker : stockBrokers) {
+            if (stockBroker.getBrokerName().equals(stockBrokername)) {
+                stockBrokers.set(stockBrokers.indexOf(stockBroker), stockBroker);
+                return;
+            }
+        }
+        throw new UnsupportedOperationException("Stock broker does not exist");
+    }
 
     private void notifyStockBrokers(Asset asset) {
         for (StockBroker stockBroker : stockBrokers) {
             stockBroker.update(asset);
         }
     }
-
-    public void updateAssetsInfo(Asset asset) {
-        int indexAsset = assetsNegociated.indexOf(asset);
-        if (indexAsset == -1)
-            throw new UnsupportedOperationException("Asset negociated does not exist");
-        assetsNegociated.set(indexAsset, asset);
-        notifyStockBrokers(asset);
-    }
-
 
 }

@@ -8,7 +8,7 @@ import java.util.List;
 
 public class StockBrokerBotImpl implements StockBrokerBot {
     public List<Asset> assets = new ArrayList<>();
-    public String botName;
+    private String botName;
     private final float buyThresholdLow;
     private final float buyThresholdHigh;
     private final float sellThresholdLow;
@@ -39,7 +39,8 @@ public class StockBrokerBotImpl implements StockBrokerBot {
 
     @Override
     public void update(Asset asset) {
-        System.out.println("Stock broker bot updated with asset: " + asset);
+        if (asset.getCurrentValueVariation() == 0)
+            return;
         if (asset.getCurrentValueVariation() > buyThresholdHigh) {
             buyAsset(asset);
             System.out.printf("Bot %s bought asset %s\n", botName, asset.getAssetName());
