@@ -6,10 +6,11 @@ import java.util.List;
 public class Asset {
     private Float currentValue;
     private String assetName;
-    private List<Float> valueHistory = new ArrayList<>();
+    private final List<Float> valueHistory = new ArrayList<>();
 
     public Asset(float currentValue, String assetName) {
         this.currentValue = currentValue;
+        this.assetName = assetName;
         setCurrentValue(currentValue);
     }
 

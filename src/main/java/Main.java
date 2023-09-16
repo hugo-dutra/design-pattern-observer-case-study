@@ -1,6 +1,5 @@
 import models.Asset;
 
-import observers.implementations.StockBrokerBotImpl;
 import observers.implementations.StockBrokerImpl;
 import subjects.implementations.StockExchangeImpl;
 
