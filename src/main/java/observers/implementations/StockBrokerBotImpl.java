@@ -44,9 +44,7 @@ public class StockBrokerBotImpl implements StockBrokerBot {
     }
 
     private boolean hasEnoughBudget(Asset asset) {
-        if (budget < asset.getCurrentValue())
-            return false;
-        return true;
+        return !(budget < asset.getCurrentValue());
     }
 
     private void sellAsset(Asset asset) {

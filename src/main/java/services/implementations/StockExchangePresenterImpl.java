@@ -130,16 +130,16 @@ public class StockExchangePresenterImpl implements StockExchangePresenter {
 
     @Override
     public void displayStockBrokers() {
-        System.out.println("--------------------------------------------------------------");
-        System.out.println("| StockBroker Name  | Number of Assets  | Budget             |");
-        System.out.println("--------------------------------------------------------------");
+        System.out.println("---------------------------------------------------------------------------");
+        System.out.println("| assetName   | assetValue    | assetValueVariation | assetQuantity |");
+        System.out.println("----------------------------------------------------------------------------");
 
         for (StockBroker stockBroker : stockExchangeAdminImpl.getStockBrokers()) {
             String brokerName = stockBroker.getBrokerName();
             int numberOfAssets = stockBroker.getAssets().size();
             float budget = stockBroker.getBudget();
 
-            System.out.printf("| %-18s| %-18d| %-18.2f|%n", brokerName, numberOfAssets, budget);
+            System.out.printf("| %-18s| %-18d| %-12.2f |", brokerName, numberOfAssets, budget);
 
             // Exibir os assets desse StockBroker, se houver
             if (numberOfAssets > 0) {
@@ -148,16 +148,13 @@ public class StockExchangePresenterImpl implements StockExchangePresenter {
                     String assetName = asset.getAssetName();
                     float currentValue = asset.getCurrentValue();
                     float valueVariation = asset.getCurrentValueVariation();
+                    int assetQuantity = asset.getAssetQuantity();
 
-                    // Ajustei o espaçamento aqui para evitar a quebra de linha
-                    System.out.printf("      %-12s %-14.2f %-19.2f%n", assetName, currentValue, valueVariation);
+                    System.out.printf("      %-12s %-14.2f %-19.2f %-14d%n", assetName, currentValue, valueVariation, assetQuantity);
                 }
             }
+            System.out.println("--------------------------------------------------------------");
         }
-        System.out.println("--------------------------------------------------------------");
     }
-
-
-
 
 }
