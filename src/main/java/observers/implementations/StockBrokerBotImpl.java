@@ -9,6 +9,7 @@ import java.util.List;
 public class StockBrokerBotImpl implements StockBrokerBot {
     public List<Asset> assets = new ArrayList<>();
     private String botName;
+    private String brokerName = "";
     private float budget = 0;
     private final float buyThresholdLow;
     private final float buyThresholdHigh;
@@ -21,13 +22,15 @@ public class StockBrokerBotImpl implements StockBrokerBot {
             float buyThresholdHigh,
             float sellThresholdLow,
             float sellThresholdHigh,
-            float budget){
+            float budget,
+            String brokerName){
         this.botName = botName;
         this.buyThresholdLow = buyThresholdLow;
         this.buyThresholdHigh = buyThresholdHigh;
         this.sellThresholdLow = sellThresholdLow;
         this.sellThresholdHigh = sellThresholdHigh;
         this.budget = budget;
+        this.brokerName = brokerName;
     }
 
     private void buyAsset(Asset asset) {
@@ -63,13 +66,17 @@ public class StockBrokerBotImpl implements StockBrokerBot {
     }
 
     @Override
-    public void update(Asset asset) {
+    public void update(Asset asset, String brokerName) {
         if (asset.getCurrentValueVariation() == 0)
             return;
         if (asset.getCurrentValueVariation() > buyThresholdHigh) {
+            if(!brokerName.equals(this.brokerName))
+                return;
             buyAsset(asset);
             System.out.printf("Bot %s bought asset %s\n", botName, asset.getAssetName());
         } else if (asset.getCurrentValueVariation() < buyThresholdLow) {
+            if(!brokerName.equals(this.brokerName))
+                return;
             sellAsset(asset);
             System.out.printf("Bot %s sold asset %s\n", botName, asset.getAssetName());
         }

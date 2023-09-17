@@ -62,7 +62,7 @@ public class StockExchangePresenterImpl implements StockExchangePresenter {
                         .getStockExchange()
                         .getAssets()
                         .stream()
-                        .filter(asset -> asset.getAssetName().equals(assetChoice)).findFirst().orElse(null);
+                        .filter(asset -> asset.getAssetName().equalsIgnoreCase(assetChoice)).findFirst().orElse(null);
                 stockExchangeAdminImpl.removeAsset(assetToRemove);
                 break;
             case 3:
@@ -75,7 +75,7 @@ public class StockExchangePresenterImpl implements StockExchangePresenter {
                         .getStockExchange()
                         .getAssets()
                         .stream()
-                        .filter(asset -> asset.getAssetName().equals(assetChoice))
+                        .filter(asset -> asset.getAssetName().equalsIgnoreCase(assetChoice))
                         .findFirst()
                         .orElse(null);
                 assetToUpdate.setCurrentValue(price);
@@ -150,7 +150,7 @@ public class StockExchangePresenterImpl implements StockExchangePresenter {
                     float valueVariation = asset.getCurrentValueVariation();
                     int assetQuantity = asset.getAssetQuantity();
 
-                    System.out.printf("      %-12s %-14.2f %-19.2f %-14d%n", assetName, currentValue, valueVariation, assetQuantity);
+                    System.out.printf("      %-14s %-16.2f %-22.2f %-16d%n", assetName, currentValue, valueVariation, assetQuantity);
                 }
             }
             System.out.println("--------------------------------------------------------------------");

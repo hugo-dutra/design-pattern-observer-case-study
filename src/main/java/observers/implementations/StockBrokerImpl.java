@@ -9,7 +9,7 @@ public class StockBrokerImpl implements StockBroker {
     private String brokerName = "";
     private StockBrokerBotImpl bot;
 
-    private StockBrokerImpl(String brokerName, float buyThresholdLow, float buyThresholdHigh, float sellThresholdLow, float sellThresholdHigh, float budget) {
+    private StockBrokerImpl(String brokerName, float buyThresholdLow, float buyThresholdHigh, float sellThresholdLow, float sellThresholdHigh, float budget ) {
         this.brokerName = brokerName;
         bot = new StockBrokerBotImpl(
                 "Bot's " + brokerName,
@@ -17,7 +17,8 @@ public class StockBrokerImpl implements StockBroker {
                 buyThresholdHigh,
                 sellThresholdLow,
                 sellThresholdHigh,
-                budget
+                budget,
+                brokerName
         );
     }
 
@@ -80,6 +81,6 @@ public class StockBrokerImpl implements StockBroker {
 
     @Override
     public void update(Asset asset) {
-        bot.update(asset);
+        bot.update(asset, brokerName);
     }
 }

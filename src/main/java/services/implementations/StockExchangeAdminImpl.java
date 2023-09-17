@@ -26,14 +26,14 @@ public class StockExchangeAdminImpl implements StockExchangeAdmin, Runnable {
     @Override
     public void addAsset(Asset asset) {
         if (assetsNegociated.contains(asset))
-            throw new UnsupportedOperationException("Asset negociated already exists");
+            System.out.println("**********Asset negociated already exists**********\n");
         assetsNegociated.add(asset);
     }
 
     @Override
     public void removeAsset(Asset asset) {
         if (!assetsNegociated.contains(asset))
-            throw new UnsupportedOperationException("Asset negociated does not exist");
+            System.out.println("**********Asset negociated does not exist**********\n");
         assetsNegociated.remove(asset);
     }
 
@@ -41,7 +41,7 @@ public class StockExchangeAdminImpl implements StockExchangeAdmin, Runnable {
     public void updateAsset(Asset asset) {
         int assetIndex = assetsNegociated.indexOf(asset);
         if(assetIndex == -1)
-            throw new UnsupportedOperationException("Asset negociated does not exist");
+            System.out.println("**********Asset negociated does not exist**********\n");
         assetsNegociated.set(assetIndex, asset);
         stockExchange.updateAsset(asset);
     }
@@ -59,9 +59,9 @@ public class StockExchangeAdminImpl implements StockExchangeAdmin, Runnable {
     @Override
     public void addAssetToStockBroker(Asset asset, StockBroker stockBroker) {
         if (!assetsNegociated.contains(asset))
-            throw new UnsupportedOperationException("Asset negociated does not exist");
+            System.out.println("**********Asset negociated does not exist**********\n");
         if (!stockExchange.getStockBrokers().contains(stockBroker))
-            throw new UnsupportedOperationException("Stock broker does not exist");
+            System.out.println("**********Stock broker does not exist**********\n");
         stockBroker.update(asset);
     }
 

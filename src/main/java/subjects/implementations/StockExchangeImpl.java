@@ -64,7 +64,7 @@ public class StockExchangeImpl implements StockExchange {
     @Override
     public void removeStockBrokerByName(String stockBrokername) {
         for (StockBroker stockBroker : stockBrokers) {
-            if (stockBroker.getBrokerName().equals(stockBrokername)) {
+            if (stockBroker.getBrokerName().equalsIgnoreCase(stockBrokername)) {
                 stockBrokers.remove(stockBroker);
                 return;
             }
@@ -75,7 +75,7 @@ public class StockExchangeImpl implements StockExchange {
     @Override
     public void updateStockBrokerByName(String stockBrokername) {
         for (StockBroker stockBroker : stockBrokers) {
-            if (stockBroker.getBrokerName().equals(stockBrokername)) {
+            if (stockBroker.getBrokerName().equalsIgnoreCase(stockBrokername)) {
                 stockBrokers.set(stockBrokers.indexOf(stockBroker), stockBroker);
                 return;
             }
