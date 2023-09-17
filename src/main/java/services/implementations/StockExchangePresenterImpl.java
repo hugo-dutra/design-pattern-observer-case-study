@@ -14,9 +14,9 @@ public class StockExchangePresenterImpl implements StockExchangePresenter {
 
     @Override
     public void displayStockExchange(List<Asset> listOfAssets) {
-        System.out.println("-----------------------------------------------------");
-        System.out.println("| Asset Name  | Current Value | Value Variation (%) |");
-        System.out.println("-----------------------------------------------------");
+        System.out.println("-------------------------------------------------------------------");
+        System.out.println("| Asset Name  | Current Value | Value Variation (%) | AssetQuantity");
+        System.out.println("------------------------------------------------------------------");
 
         for (Asset asset : listOfAssets) {
             float currentValue = asset.getCurrentValue();
@@ -130,9 +130,9 @@ public class StockExchangePresenterImpl implements StockExchangePresenter {
 
     @Override
     public void displayStockBrokers() {
-        System.out.println("---------------------------------------------------------------------------");
-        System.out.println("| assetName   | assetValue    | assetValueVariation | assetQuantity |");
-        System.out.println("----------------------------------------------------------------------------");
+        System.out.println("--------------------------------------------------------------------");
+        System.out.println("| Asset Name  | Current Value | Value Variation (%) | AssetQuantity ");
+        System.out.println("--------------------------------------------------------------------");
 
         for (StockBroker stockBroker : stockExchangeAdminImpl.getStockBrokers()) {
             String brokerName = stockBroker.getBrokerName();
