@@ -1,7 +1,7 @@
-package observers.implementations;
+package observable.observers.implementations;
 
-import models.Asset;
-import observers.interfaces.StockBrokerBot;
+import observable.models.Asset;
+import observable.observers.interfaces.StockBrokerBot;
 
 import java.util.ArrayList;
 import java.util.List;

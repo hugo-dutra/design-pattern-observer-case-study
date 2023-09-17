@@ -1,6 +1,6 @@
-package observers.interfaces;
+package observable.observers.interfaces;
 
-import models.Asset;
+import observable.models.Asset;
 
 import java.util.List;
 

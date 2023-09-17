@@ -1,9 +1,8 @@
-package subjects.implementations;
+package observable.subjects.implementations;
 
-import models.Asset;
-import observers.implementations.StockBrokerImpl;
-import observers.interfaces.StockBroker;
-import subjects.interfaces.StockExchange;
+import observable.models.Asset;
+import observable.observers.interfaces.StockBroker;
+import observable.subjects.interfaces.StockExchange;
 
 import java.util.ArrayList;
 import java.util.List;

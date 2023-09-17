@@ -1,10 +1,9 @@
-package services.implementations;
+package observable.services.implementations;
 
-import models.Asset;
-import observers.implementations.StockBrokerImpl;
-import observers.interfaces.StockBroker;
-import services.interfaces.StockExchangePresenter;
-import subjects.interfaces.StockExchange;
+import observable.models.Asset;
+import observable.observers.implementations.StockBrokerImpl;
+import observable.observers.interfaces.StockBroker;
+import observable.services.interfaces.StockExchangePresenter;
 
 import java.util.Scanner;
 import java.util.List;

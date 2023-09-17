@@ -1,6 +1,6 @@
-package services.interfaces;
+package observable.services.interfaces;
 
-import models.Asset;
+import observable.models.Asset;
 
 import java.util.List;
 

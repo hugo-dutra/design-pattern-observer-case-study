@@ -1,7 +1,9 @@
-import services.implementations.StockExchangeAdminImpl;
-import subjects.implementations.StockExchangeImpl;
+package observable;
 
-public class Main {
+import observable.services.implementations.StockExchangeAdminImpl;
+import observable.subjects.implementations.StockExchangeImpl;
+
+public class ClientObservable {
     public static void main(String[] args) {
         StockExchangeImpl stockExchange = new StockExchangeImpl();
         StockExchangeAdminImpl stockExchangeAdmin = new StockExchangeAdminImpl(stockExchange);

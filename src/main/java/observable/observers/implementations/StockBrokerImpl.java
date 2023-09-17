@@ -1,7 +1,7 @@
-package observers.implementations;
+package observable.observers.implementations;
 
-import models.Asset;
-import observers.interfaces.StockBroker;
+import observable.models.Asset;
+import observable.observers.interfaces.StockBroker;
 
 import java.util.List;
 

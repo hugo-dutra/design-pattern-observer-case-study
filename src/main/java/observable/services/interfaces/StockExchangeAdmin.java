@@ -1,8 +1,8 @@
-package services.interfaces;
+package observable.services.interfaces;
 
-import models.Asset;
-import observers.interfaces.StockBroker;
-import subjects.interfaces.StockExchange;
+import observable.models.Asset;
+import observable.observers.interfaces.StockBroker;
+import observable.subjects.interfaces.StockExchange;
 
 import java.util.List;
 

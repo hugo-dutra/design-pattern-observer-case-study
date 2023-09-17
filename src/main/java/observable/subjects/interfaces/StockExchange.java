@@ -1,7 +1,7 @@
-package subjects.interfaces;
+package observable.subjects.interfaces;
 
-import models.Asset;
-import observers.interfaces.StockBroker;
+import observable.models.Asset;
+import observable.observers.interfaces.StockBroker;
 
 import java.util.List;
 
