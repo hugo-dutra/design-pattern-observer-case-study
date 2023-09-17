@@ -23,7 +23,7 @@ public class LoggerHandlerWarning implements LoggerHandler {
     @Override
     public void logMessage(String message, LogLevel logLevel, boolean showLogMessage) {
         if(logLevel == LogLevel.WARNING) {
-            String textToAppend = "INFO: " + message  + " - " + sdFileTextFormat.format(new java.util.Date()) + "\n";
+            String textToAppend = logLevel.getDisplayName() +": " + message  + " - " + sdFileTextFormat.format(new java.util.Date()) + "\n";
             messageQueue.add(textToAppend);
             if (showLogMessage) {
                 this.showLogMessage();

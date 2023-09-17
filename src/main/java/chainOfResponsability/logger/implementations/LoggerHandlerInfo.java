@@ -22,7 +22,7 @@ public class LoggerHandlerInfo implements LoggerHandler {
     @Override
     public void logMessage(String message, LogLevel logLevel, boolean showLogMessage) {
         if(logLevel == LogLevel.INFO) {
-            this.logMessage = "INFO: " + message  + " - " + sdFileTextFormat.format(new java.util.Date()) + "\n";;
+            this.logMessage = logLevel.getDisplayName() +": " + message  + " - " + sdFileTextFormat.format(new java.util.Date()) + "\n";;
             if (showLogMessage) {
                 this.showLogMessage();
             }

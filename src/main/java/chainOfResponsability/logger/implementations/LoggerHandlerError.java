@@ -14,7 +14,7 @@ public class LoggerHandlerError implements LoggerHandler {
     @Override
     public void logMessage(String message, LogLevel logLevel, boolean showLogMessage) {
         if(logLevel == LogLevel.ERROR) {
-            this.logMessage = "ERROR: " + message;
+            this.logMessage = logLevel.getDisplayName()+ ": " + message;
             this.sendEmailWithMessageToAdmin();
             if (showLogMessage) {
                 this.showLogMessage();

@@ -11,6 +11,7 @@ import java.text.SimpleDateFormat;
 public class LoggerHandlerDebug implements LoggerHandler {
     private LoggerHandler nextLoggerHandler;
     SimpleDateFormat sdFileTextFormat;
+    private LogLevel logLevel;
 
     public LoggerHandlerDebug() {
         sdFileTextFormat = new SimpleDateFormat ("yyyy-MM-dd HH:mm:ss");
@@ -23,6 +24,7 @@ public class LoggerHandlerDebug implements LoggerHandler {
 
     @Override
     public void logMessage(String message, LogLevel logLevel, boolean showLogMessage) {
+        this.logLevel = logLevel;
         if (logLevel == LogLevel.DEBUG) {
             this.logMessageToFile(message);
             if (showLogMessage) {
@@ -36,10 +38,10 @@ public class LoggerHandlerDebug implements LoggerHandler {
     private void logMessageToFile(String message) {
         sdFileTextFormat = new SimpleDateFormat ("yyyy-MM-dd");
         String currentDate = sdFileTextFormat.format(new java.util.Date());
-        String fileName = "debug-" + currentDate + ".log";
+        String fileName = this.logLevel.getDisplayName()+ "-" + currentDate + ".log";
 
         SimpleDateFormat sdFileTextFormat = new SimpleDateFormat ("yyyy-MM-dd HH:mm:ss");
-        String textToAppend = "DEBUG: " + message  + " - " + sdFileTextFormat.format(new java.util.Date()) + "\n";
+        String textToAppend = this.logLevel.getDisplayName()+": " + message  + " - " + sdFileTextFormat.format(new java.util.Date()) + "\n";
 
         try{
             File file = new File(fileName);
@@ -60,7 +62,7 @@ public class LoggerHandlerDebug implements LoggerHandler {
 
     private void showLogMessage() {
         String currentDate = sdFileTextFormat.format(new java.util.Date());
-        String fileName = "debug-" + currentDate + ".log";
+        String fileName = this.logLevel.getDisplayName()+"-" + currentDate + ".log";
 
         try{
             File file = new File(fileName);
