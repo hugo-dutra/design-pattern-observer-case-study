@@ -10,23 +10,32 @@ import java.text.SimpleDateFormat;
 
 public class LoggerHandlerDebug implements LoggerHandler {
     private LoggerHandler nextLoggerHandler;
+    SimpleDateFormat sdFileTextFormat;
+
+    public LoggerHandlerDebug() {
+        sdFileTextFormat = new SimpleDateFormat ("yyyy-MM-dd HH:mm:ss");
+    }
+
     @Override
     public void setNextLoggerHandler(LoggerHandler nextLoggerHandler) {
         this.nextLoggerHandler = nextLoggerHandler;
     }
 
     @Override
-    public void logMessage(String message, LogLevel logLevel) {
-        if(logLevel == LogLevel.DEBUG) {
+    public void logMessage(String message, LogLevel logLevel, boolean showLogMessage) {
+        if (logLevel == LogLevel.DEBUG) {
             this.logMessageToFile(message);
+            if (showLogMessage) {
+                this.showLogMessage();
+            }
         } else {
-            this.nextLoggerHandler.logMessage(message, logLevel);
+            this.nextLoggerHandler.logMessage(message, logLevel, showLogMessage);
         }
     }
 
     private void logMessageToFile(String message) {
-        SimpleDateFormat  sdFileFormat = new SimpleDateFormat ("yyyy-MM-dd");
-        String currentDate = sdFileFormat.format(new java.util.Date());
+        sdFileTextFormat = new SimpleDateFormat ("yyyy-MM-dd");
+        String currentDate = sdFileTextFormat.format(new java.util.Date());
         String fileName = "debug-" + currentDate + ".log";
 
         SimpleDateFormat sdFileTextFormat = new SimpleDateFormat ("yyyy-MM-dd HH:mm:ss");
@@ -43,6 +52,27 @@ public class LoggerHandlerDebug implements LoggerHandler {
             bufferedWriter.write(textToAppend);
             bufferedWriter.newLine();
             bufferedWriter.close();
+        }catch (Exception e) {
+            System.out.println("Error: " + e.getMessage());
+        }
+    }
+
+
+    private void showLogMessage() {
+        String currentDate = sdFileTextFormat.format(new java.util.Date());
+        String fileName = "debug-" + currentDate + ".log";
+
+        try{
+            File file = new File(fileName);
+            if(!file.exists()){
+                System.out.println("File not found");
+            } else {
+                java.util.Scanner scanner = new java.util.Scanner(file);
+                while (scanner.hasNextLine()) {
+                    String line = scanner.nextLine();
+                    System.out.println(line);
+                }
+            }
         }catch (Exception e) {
             System.out.println("Error: " + e.getMessage());
         }

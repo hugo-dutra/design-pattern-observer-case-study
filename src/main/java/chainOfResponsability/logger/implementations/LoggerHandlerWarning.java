@@ -4,16 +4,17 @@ import chainOfResponsability.logger.enums.LogLevel;
 import chainOfResponsability.logger.interfaces.LoggerHandler;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.List;
 
-public class LoggerHandlerInfo implements LoggerHandler {
+public class LoggerHandlerWarning implements LoggerHandler {
     private LoggerHandler nextLoggerHandler;
+    private final List<String> messageQueue = new ArrayList<>();
     SimpleDateFormat sdFileTextFormat;
-    private String logMessage;
 
-    public LoggerHandlerInfo() {
+    public LoggerHandlerWarning() {
         sdFileTextFormat = new SimpleDateFormat ("yyyy-MM-dd HH:mm:ss");
     }
-
     @Override
     public void setNextLoggerHandler(LoggerHandler nextLoggerHandler) {
         this.nextLoggerHandler = nextLoggerHandler;
@@ -21,8 +22,9 @@ public class LoggerHandlerInfo implements LoggerHandler {
 
     @Override
     public void logMessage(String message, LogLevel logLevel, boolean showLogMessage) {
-        if(logLevel == LogLevel.INFO) {
-            this.logMessage = "INFO: " + message  + " - " + sdFileTextFormat.format(new java.util.Date()) + "\n";;
+        if(logLevel == LogLevel.WARNING) {
+            String textToAppend = "INFO: " + message  + " - " + sdFileTextFormat.format(new java.util.Date()) + "\n";
+            messageQueue.add(textToAppend);
             if (showLogMessage) {
                 this.showLogMessage();
             }
@@ -31,10 +33,9 @@ public class LoggerHandlerInfo implements LoggerHandler {
         }
     }
 
-
     private void showLogMessage() {
-        System.out.println(this.logMessage);
+        for (String message : messageQueue) {
+            System.out.println(message);
+        }
     }
-
-
 }
