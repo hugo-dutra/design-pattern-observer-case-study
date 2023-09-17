@@ -15,7 +15,7 @@ public class StockExchangeImpl implements StockExchange {
     @Override
     public void addAsset(Asset asset) {
         if (assetsNegociated.contains(asset))
-            throw new UnsupportedOperationException("Asset negociated already exists");
+            System.out.println("**********Asset negociated already exists**********\n");
         assetsNegociated.add(asset);
         notifyStockBrokers(asset);
     }
@@ -23,7 +23,7 @@ public class StockExchangeImpl implements StockExchange {
     @Override
     public void removeAsset(Asset asset) {
         if (!assetsNegociated.contains(asset))
-            throw new UnsupportedOperationException("Asset negociated does not exist");
+            System.out.println("**********Asset negociated does not exist**********\n");
         assetsNegociated.remove(asset);
         notifyStockBrokers(asset);
     }
@@ -32,7 +32,7 @@ public class StockExchangeImpl implements StockExchange {
     public void updateAsset(Asset asset) {
         int assetIndex = assetsNegociated.indexOf(asset);
         if (assetIndex == -1)
-            throw new UnsupportedOperationException("Asset negociated does not exist");
+            System.out.println("**********Asset negociated does not exist**********\n");
         assetsNegociated.set(assetIndex, asset);
         notifyStockBrokers(asset);
     }
@@ -50,14 +50,14 @@ public class StockExchangeImpl implements StockExchange {
     @Override
     public void addStockBroker(StockBroker stockBroker) {
         if (stockBrokers.contains(stockBroker))
-            throw new UnsupportedOperationException("Stock broker already exists");
+            System.out.println("\n**********Stock broker already exists**********\n");
         stockBrokers.add(stockBroker);
     }
 
     @Override
     public void removeStockBroker(StockBroker stockBroker) {
         if (!stockBrokers.contains(stockBroker))
-            throw new UnsupportedOperationException("Stock broker does not exist");
+            System.out.println("\n**********Stock broker does not exist**********\n");
         stockBrokers.remove(stockBroker);
     }
 
@@ -69,7 +69,7 @@ public class StockExchangeImpl implements StockExchange {
                 return;
             }
         }
-        throw new UnsupportedOperationException("Stock broker does not exist");
+        System.out.println("\n**********Stock broker does not exist**********\n");
     }
 
     @Override
@@ -80,7 +80,7 @@ public class StockExchangeImpl implements StockExchange {
                 return;
             }
         }
-        throw new UnsupportedOperationException("Stock broker does not exist");
+        System.out.println("\n**********Stock broker does not exist**********\n");
     }
 
     private void notifyStockBrokers(Asset asset) {

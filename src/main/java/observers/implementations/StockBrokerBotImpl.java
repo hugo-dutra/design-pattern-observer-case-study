@@ -35,6 +35,12 @@ public class StockBrokerBotImpl implements StockBrokerBot {
             assets.add(asset);
             updateBudget(-asset.getCurrentValue());
         }
+        if(assets.contains(asset) && hasEnoughBudget(asset)){
+            int assetIndex = assets.indexOf(asset);
+            asset.increaseAsssetQuantity();
+            updateBudget(-asset.getCurrentValue());
+            assets.set(assetIndex, asset);
+        }
     }
 
     private boolean hasEnoughBudget(Asset asset) {
@@ -44,9 +50,14 @@ public class StockBrokerBotImpl implements StockBrokerBot {
     }
 
     private void sellAsset(Asset asset) {
-        if (assets.contains(asset))
-            assets.remove(asset);
-        updateBudget(asset.getCurrentValue());
+        int assetIndex = assets.indexOf(asset);
+        if (assetIndex != -1){
+            asset.decreaseAsssetQuantity();
+            assets.set(assetIndex, asset);
+            updateBudget(asset.getCurrentValue());
+            if(asset.getAssetQuantity() <= 0)
+                assets.remove(asset);
+        }
     }
 
     private void updateBudget(float assetValue) {

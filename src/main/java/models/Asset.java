@@ -6,12 +6,25 @@ import java.util.List;
 public class Asset {
     private Float currentValue;
     private final String assetName;
+    private int assetQuantity = 1;
     private final List<Float> valueHistory = new ArrayList<>();
 
     public Asset(float currentValue, String assetName) {
         this.currentValue = currentValue;
         this.assetName = assetName;
         setCurrentValue(currentValue);
+    }
+
+    public int getAssetQuantity() {
+        return assetQuantity;
+    }
+
+    public void increaseAsssetQuantity() {
+        assetQuantity++;
+    }
+
+    public void decreaseAsssetQuantity() {
+        assetQuantity--;
     }
 
     public float getCurrentValue() {

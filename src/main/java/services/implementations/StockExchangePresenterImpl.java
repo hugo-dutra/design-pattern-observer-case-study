@@ -58,8 +58,6 @@ public class StockExchangePresenterImpl implements StockExchangePresenter {
             case 2:
                 System.out.println("Defina o ativo:");
                 assetChoice = scanner.next();
-                System.out.println("Informe o preço:");
-                price = scanner.nextFloat();
                 Asset assetToRemove = stockExchangeAdminImpl
                         .getStockExchange()
                         .getAssets()
