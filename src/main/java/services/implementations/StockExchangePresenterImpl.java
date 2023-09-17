@@ -14,7 +14,7 @@ public class StockExchangePresenterImpl implements StockExchangePresenter {
 
     @Override
     public void displayStockExchange(List<Asset> listOfAssets) {
-        System.out.println("-------------------------------------------------------------------");
+        System.out.println("------------------------------------------------------------------");
         System.out.println("| Asset Name  | Current Value | Value Variation (%) | AssetQuantity");
         System.out.println("------------------------------------------------------------------");
 
@@ -25,7 +25,7 @@ public class StockExchangePresenterImpl implements StockExchangePresenter {
 
             System.out.printf("| %-12s| %-14.2f| %-19.2f|%n", assetName, currentValue, valueVariation);
         }
-        System.out.println("-----------------------------------------------------");
+        System.out.println("------------------------------------------------------------------");
     }
 
     public StockExchangePresenterImpl(StockExchangeAdminImpl stockExchangeAdminImpl) {
@@ -38,7 +38,7 @@ public class StockExchangePresenterImpl implements StockExchangePresenter {
         String assetChoice;
         float price;
 
-        System.out.println("O que você gostaria de fazer?");
+        System.out.println("O que você gostaria de fazer?\n");
         System.out.println("1. Adicionar um asset");
         System.out.println("2. Remover um asset");
         System.out.println("3. Atualizar um asset");
@@ -153,7 +153,7 @@ public class StockExchangePresenterImpl implements StockExchangePresenter {
                     System.out.printf("      %-12s %-14.2f %-19.2f %-14d%n", assetName, currentValue, valueVariation, assetQuantity);
                 }
             }
-            System.out.println("--------------------------------------------------------------");
+            System.out.println("--------------------------------------------------------------------");
         }
     }
 

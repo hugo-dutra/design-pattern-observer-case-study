@@ -6,7 +6,7 @@ import java.util.List;
 public class Asset {
     private Float currentValue;
     private final String assetName;
-    private int assetQuantity = 1;
+    private int assetQuantity = 0;
     private final List<Float> valueHistory = new ArrayList<>();
 
     public Asset(float currentValue, String assetName) {
