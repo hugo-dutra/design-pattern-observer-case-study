@@ -15,10 +15,8 @@ public class Triage implements EmergencyTriage {
 
     @Override
     public void emergencyProcess(Patient patient) {
+        System.out.println("Patient " + patient.getName() + " is being treated by the Triage");
         patient.setHealthSeverity(setRandoPatientSeverity(patient).getHealthSeverity());
-        if (Objects.equals(patient.getHealthSeverity().getHealthSeverity(), HealthSeverity.LOW.getHealthSeverity())) {
-            System.out.println("Patient " + patient.getName() + " is being treated by the Triage");
-        }
         next.emergencyProcess(patient);
     }
 
