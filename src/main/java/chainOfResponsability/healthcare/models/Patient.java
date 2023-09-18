@@ -19,7 +19,8 @@ public class Patient {
     }
 
     public void addMedicalExam(MedicalExam medicalExam) {
-        medicalExams.add(medicalExam);
+        if (!medicalExams.contains(medicalExam))
+            medicalExams.add(medicalExam);
     }
 
     public String getName() {
