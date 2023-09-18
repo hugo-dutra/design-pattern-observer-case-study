@@ -18,7 +18,8 @@ public class Hospitalization implements EmergencyTriage {
         }
         patient.setHealthSeverity(updateHelthSeverityRrandomly(patient).getHealthSeverity());
         if (this.next != null)
-            this.next.emergencyProcess(patient);
+            System.out.println("Patient " + patient.getName() + " is being treated by the Hospitalization with severity " + patient.getHealthSeverity().getHealthSeverity());
+        this.next.emergencyProcess(patient);
     }
 
     private Patient updateHelthSeverityRrandomly(Patient patient) {
