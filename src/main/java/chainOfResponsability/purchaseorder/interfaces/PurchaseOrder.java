@@ -1,6 +1,6 @@
-package chainOfResponsability.anotherProject.interfaces;
+package chainOfResponsability.purchaseorder.interfaces;
 
-import chainOfResponsability.anotherProject.models.Order;
+import chainOfResponsability.purchaseorder.models.Order;
 
 public interface PurchaseOrder {
     void setNextStep(PurchaseOrder nextStep);

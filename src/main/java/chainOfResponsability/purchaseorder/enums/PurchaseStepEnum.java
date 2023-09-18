@@ -1,4 +1,4 @@
-package chainOfResponsability.anotherProject.enums;
+package chainOfResponsability.purchaseorder.enums;
 
 public enum PurchaseStepEnum {
     INVENTORY("INVENTORY"),

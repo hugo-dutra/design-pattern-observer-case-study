@@ -1,7 +1,7 @@
-package chainOfResponsability.anotherProject.implementations;
+package chainOfResponsability.purchaseorder.implementations;
 
-import chainOfResponsability.anotherProject.interfaces.PurchaseOrder;
-import chainOfResponsability.anotherProject.models.Order;
+import chainOfResponsability.purchaseorder.interfaces.PurchaseOrder;
+import chainOfResponsability.purchaseorder.models.Order;
 
 public class PurchaseOrderFinalize implements PurchaseOrder {
     private PurchaseOrder nextStep;

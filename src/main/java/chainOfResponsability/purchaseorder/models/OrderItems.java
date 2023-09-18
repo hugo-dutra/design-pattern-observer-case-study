@@ -1,4 +1,4 @@
-package chainOfResponsability.anotherProject.models;
+package chainOfResponsability.purchaseorder.models;
 
 import java.math.BigDecimal;
 
