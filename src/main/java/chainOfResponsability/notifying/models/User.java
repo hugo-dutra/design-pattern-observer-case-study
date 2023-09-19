@@ -52,22 +52,22 @@ public class User implements UserObserver {
         private String phone;
         private String whatsApp;
 
-        public Builder name(String name) {
+        public Builder withName(String name) {
             this.name = name;
             return this;
         }
 
-        public Builder email(String email) {
+        public Builder withEmail(String email) {
             this.email = email;
             return this;
         }
 
-        public Builder phone(String phone) {
+        public Builder withPhone(String phone) {
             this.phone = phone;
             return this;
         }
 
-        public Builder whatsApp(String whatsApp) {
+        public Builder withWhatsApp(String whatsApp) {
             this.whatsApp = whatsApp;
             return this;
         }

@@ -12,6 +12,7 @@ public class NofityHandlerSMS  implements NotifyHandler {
     @Override
     public void setNext(NotifyHandler handler) {
         this.next = handler;
+        this.users = handler.getUsers();
     }
 
     @Override
@@ -25,13 +26,19 @@ public class NofityHandlerSMS  implements NotifyHandler {
     }
 
     @Override
+    public List<User> getUsers() {
+        return users;
+    }
+
+    @Override
     public void notifyObservers(String message) {
         for (User user : users) {
-            if(user.getPhone() != null && !user.getPhone().isEmpty()) {
-                System.out.println("Sending SMS to: " + user.getPhone());
+            if (user.getPhone() != null && !user.getPhone().isEmpty()) {
+                System.out.println("Sending SMS to: " + user.getPhone() + " with message: " + message + " to user " + user.getName() + "...");
                 user.update(message);
             }
         }
-        next.notifyObservers(message);
+        if (next != null)
+            next.notifyObservers(message);
     }
 }

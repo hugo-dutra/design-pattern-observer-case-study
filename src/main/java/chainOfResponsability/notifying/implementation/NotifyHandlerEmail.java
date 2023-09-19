@@ -12,11 +12,12 @@ public class NotifyHandlerEmail implements NotifyHandler {
     @Override
     public void setNext(NotifyHandler handler) {
         this.next = handler;
+        this.users = handler.getUsers();
     }
 
     @Override
     public void attach(List<User> users) {
-        users = users;
+        this.users = users;
     }
 
     @Override
@@ -25,13 +26,19 @@ public class NotifyHandlerEmail implements NotifyHandler {
     }
 
     @Override
+    public List<User> getUsers() {
+        return users;
+    }
+
+    @Override
     public void notifyObservers(String message) {
         for (User user : users) {
-            if(user.getEmail() != null && !user.getEmail().isEmpty()) {
-                System.out.println("Sending email to: " + user.getEmail());
+            if (user.getEmail() != null && !user.getEmail().isEmpty()) {
+                System.out.println("Sending email to: " + user.getEmail()  + " with message: " + message + " to user " + user.getName() + "...");
                 user.update(message);
             }
         }
-        next.notifyObservers(message);
+        if (next != null)
+            next.notifyObservers(message);
     }
 }

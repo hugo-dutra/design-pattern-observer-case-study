@@ -12,6 +12,7 @@ public class NotifyHandlerWhatsapp implements NotifyHandler {
     @Override
     public void setNext(NotifyHandler handler) {
         this.next = handler;
+        this.users = handler.getUsers();
     }
 
     @Override
@@ -25,13 +26,19 @@ public class NotifyHandlerWhatsapp implements NotifyHandler {
     }
 
     @Override
+    public List<User> getUsers() {
+        return users;
+    }
+
+    @Override
     public void notifyObservers(String message) {
         for (User user : users) {
-            if(user.getWhatsApp() != null && !user.getWhatsApp().isEmpty()) {
-                System.out.println("Sending WhatsApp to: " + user.getWhatsApp());
+            if (user.getWhatsApp() != null && !user.getWhatsApp().isEmpty()) {
+                System.out.println("Sending WhatsApp to: " + user.getWhatsApp() + " with message: " + message + " to user " + user.getName() + "...");
                 user.update(message);
             }
         }
-        next.notifyObservers(message);
+        if (next != null)
+            next.notifyObservers(message);
     }
 }
