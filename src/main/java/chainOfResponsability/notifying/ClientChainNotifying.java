@@ -1,6 +1,6 @@
 package chainOfResponsability.notifying;
 
-import chainOfResponsability.notifying.implementation.NofityHandlerSMS;
+import chainOfResponsability.notifying.implementation.NotiftyHandlerSMS;
 import chainOfResponsability.notifying.implementation.NotifyHandlerEmail;
 import chainOfResponsability.notifying.implementation.NotifyHandlerWhatsapp;
 import chainOfResponsability.notifying.interfaces.NotifyHandler;
@@ -13,22 +13,22 @@ public class ClientChainNotifying {
     public static void main(String[] args) {
         NotifyHandler notifyHandlerEmail = new NotifyHandlerEmail();
         NotifyHandler notifyHandlerWhatsapp = new NotifyHandlerWhatsapp();
-        NotifyHandler notifyHandlerSMS = new NofityHandlerSMS();
+        NotifyHandler notifyHandlerSMS = new NotiftyHandlerSMS();
 
         notifyHandlerEmail.setNext(notifyHandlerWhatsapp);
         notifyHandlerWhatsapp.setNext(notifyHandlerSMS);
-
 
         List<User> users = new ArrayList<>();
         users.add(new User.Builder()
                 .withName("Juan")
                 .withEmail("juan@email.com")
-                .withPhone("123456789")
+                .withPhone("1111111111")
                 .withWhatsApp("123456789")
                 .build());
         users.add(new User.Builder()
                 .withName("Pedro")
-                .withPhone("123456789")
+                .withEmail("Pedro@email.com")
+                .withPhone("22222222222")
                 .withWhatsApp("123456789")
                 .build());
 
@@ -36,21 +36,16 @@ public class ClientChainNotifying {
         notifyHandlerWhatsapp.attach(users);
         notifyHandlerSMS.attach(users);
 
-        notifyHandlerEmail.notifyObservers("Hello houston, we have a problem...");
-
+        notifyHandlerEmail.notifyObservers("Hello houston, we have a problem: number 1");
+        System.out.println("===========================================");
         users.add(new User.Builder()
                         .withName("Maria")
                         .withWhatsApp("123456789")
                         .build());
-
         System.out.println("Adding new user...");
-
-
-        notifyHandlerEmail.attach(users);
-        notifyHandlerWhatsapp.attach(users);
-        notifyHandlerSMS.attach(users);
-
-        notifyHandlerEmail.notifyObservers("Hello houston, we have a  other problem...");
+        notifyHandlerEmail.notifyObservers("Hello houston, we have a  other problem: number 2");
+        System.out.println("===========================================");
+        notifyHandlerEmail.notifyObservers("Hello houston, we have a  other problem...minos one user: number 3");
 
 
 

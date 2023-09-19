@@ -2,11 +2,12 @@ package chainOfResponsability.notifying.implementation;
 
 import chainOfResponsability.notifying.interfaces.NotifyHandler;
 import chainOfResponsability.notifying.models.User;
+import chainOfResponsability.notifying.utils.Utils;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class NofityHandlerSMS  implements NotifyHandler {
+public class NotiftyHandlerSMS  implements NotifyHandler {
     private NotifyHandler next;
     private List<User> users = new ArrayList<>();
     @Override
@@ -33,12 +34,16 @@ public class NofityHandlerSMS  implements NotifyHandler {
     @Override
     public void notifyObservers(String message) {
         for (User user : users) {
-            if (user.getPhone() != null && !user.getPhone().isEmpty()) {
+            if (!Utils.isNullOrEmpty(user.getPhone())) {
                 System.out.println("Sending SMS to: " + user.getPhone() + " with message: " + message + " to user " + user.getName() + "...");
                 user.update(message);
             }
         }
         if (next != null)
             next.notifyObservers(message);
+    }
+
+    private boolean IsNullOrEmpty(String str) {
+        return str == null || str.isEmpty();
     }
 }

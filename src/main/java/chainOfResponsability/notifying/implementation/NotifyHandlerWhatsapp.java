@@ -2,6 +2,7 @@ package chainOfResponsability.notifying.implementation;
 
 import chainOfResponsability.notifying.interfaces.NotifyHandler;
 import chainOfResponsability.notifying.models.User;
+import chainOfResponsability.notifying.utils.Utils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -33,7 +34,7 @@ public class NotifyHandlerWhatsapp implements NotifyHandler {
     @Override
     public void notifyObservers(String message) {
         for (User user : users) {
-            if (user.getWhatsApp() != null && !user.getWhatsApp().isEmpty()) {
+            if (!Utils.isNullOrEmpty(user.getWhatsApp())) {
                 System.out.println("Sending WhatsApp to: " + user.getWhatsApp() + " with message: " + message + " to user " + user.getName() + "...");
                 user.update(message);
             }
