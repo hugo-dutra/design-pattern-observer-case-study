@@ -6,9 +6,9 @@ import chainOfResponsability.notifying.models.User;
 import java.util.ArrayList;
 import java.util.List;
 
-public class NotifyHandlerEmail implements NotifyHandler {
+public class NotifyHandlerWhatsapp implements NotifyHandler {
     private NotifyHandler next;
-    List<User> users = new ArrayList<>();
+    private List<User> users = new ArrayList<>();
     @Override
     public void setNext(NotifyHandler handler) {
         this.next = handler;
@@ -16,19 +16,19 @@ public class NotifyHandlerEmail implements NotifyHandler {
 
     @Override
     public void attach(List<User> users) {
-        users = users;
+        this.users = users;
     }
 
     @Override
-    public void detach(User user) {
-        users.remove(user);
+    public void detach(User observer) {
+        users.remove(observer);
     }
 
     @Override
     public void notifyObservers(String message) {
         for (User user : users) {
-            if(user.getEmail() != null && !user.getEmail().isEmpty()) {
-                System.out.println("Sending email to: " + user.getEmail());
+            if(user.getWhatsApp() != null && !user.getWhatsApp().isEmpty()) {
+                System.out.println("Sending WhatsApp to: " + user.getWhatsApp());
                 user.update(message);
             }
         }
