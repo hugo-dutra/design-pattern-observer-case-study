@@ -42,8 +42,4 @@ public class NotiftyHandlerSMS  implements NotifyHandler {
         if (next != null)
             next.notifyObservers(message);
     }
-
-    private boolean IsNullOrEmpty(String str) {
-        return str == null || str.isEmpty();
-    }
 }
