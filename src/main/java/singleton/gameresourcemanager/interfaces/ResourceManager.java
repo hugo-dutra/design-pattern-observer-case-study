@@ -1,4 +1,4 @@
-package singleton.gameresourcemanager.implementations;
+package singleton.gameresourcemanager.interfaces;
 
 import singleton.gameresourcemanager.enums.ResourceType;
 import singleton.gameresourcemanager.models.Player;
@@ -9,6 +9,6 @@ public interface ResourceManager {
     void removeResource(Resource resource, Player player);
     void addResourceAmount(ResourceType type, int amount, Player player);
     void removeResourceAmount(ResourceType type, int amount, Player player);
-    void printResources();
-    void exchangeResources(ResourceType type, int amount, ResourceType type2, int amount2);
+    void printResources(Player  player);
+    void exchangeResources(Player player, ResourceType type, int amount, Player player2,  ResourceType type2, int amount2);
 }

@@ -1,9 +1,9 @@
 package singleton.gameresourcemanager.enums;
 
 public enum ResourceType {
-    GOLD("Gold"),
-    WOOD("Wood"),
-    ROCK("Rock");
+    GOLD("GOLD"),
+    WOOD("WOOD"),
+    ROCK("ROCK");
 
     private final String name;
 

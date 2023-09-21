@@ -8,7 +8,14 @@ public class Resource {
 
     public Resource(ResourceType type, int amount) {
         this.type = type;
-        this.amount = amount;
+        if (isAmountValid(amount)) {
+            System.out.println("Amount must be greater than or equal to 0");
+        }
+        this.amount = Math.max(amount, 0);
+    }
+
+    private boolean isAmountValid(int amount) {
+        return amount >= 0;
     }
 
     public ResourceType getType() {
@@ -20,7 +27,11 @@ public class Resource {
     }
 
     public void setAmount(int amount) {
-        this.amount = amount;
+        if(!isAmountValid(amount)){
+            System.out.println("Amount must be greater than or equal to 0");
+            return;
+        }
+        this.amount = Math.max(amount, 0);
     }
 
     @Override
@@ -35,7 +46,6 @@ public class Resource {
         Resource resource = (Resource) obj;
         return resource.getType() == type && resource.getAmount() == amount;
     }
-
 
 
 }
