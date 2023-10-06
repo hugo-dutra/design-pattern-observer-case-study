@@ -6,20 +6,24 @@ import factory.abstractfactory.uisample.interfaces.*;
 
 public class ClientFactoryUI {
     public static void main(String[] args) {
-        IComponentFactory whiteThemeComponentFactory = Theme.getInstance().createComponentFactory(EnumTheme.WHITE);
-        Ibutton button = whiteThemeComponentFactory.createButton();
-        IPanel panel = whiteThemeComponentFactory.createPanel();
-        ITextBox textBox = whiteThemeComponentFactory.createTextBox();
+        Ibutton button;
+        IPanel panel;
+        ITextBox textBox;
 
+        IComponentFactory whiteThemeComponentFactory = Theme.getInstance().createComponentFactory(EnumTheme.WHITE);
+        button = whiteThemeComponentFactory.createButton();
+        panel = whiteThemeComponentFactory.createPanel();
+        textBox = whiteThemeComponentFactory.createTextBox();
         button.render();
         panel.render();
         textBox.render();
+
+        System.out.println("\n====================================\n");
 
         IComponentFactory blackThemeComponentFactory = Theme.getInstance().createComponentFactory(EnumTheme.BLACK);
         button = blackThemeComponentFactory.createButton();
         panel = blackThemeComponentFactory.createPanel();
         textBox = blackThemeComponentFactory.createTextBox();
-
         button.render();
         panel.render();
         textBox.render();
