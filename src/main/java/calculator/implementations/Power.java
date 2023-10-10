@@ -7,10 +7,9 @@ import java.util.function.Function;
 
 public class Power implements ICalc {
     @Override
-    public double calc(double[] values) {
+    public double process(double[] values) {
         HashMap<Integer, Function<double[], Double>> map = new HashMap<>();
         map.put(0, this::handleWrongValues);
-        map.put(1, this::handleWrongValues);
         map.put(2, this::handleCorrectParams);
         return map.getOrDefault(values.length, map.get(0)).apply(values);
     }

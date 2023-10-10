@@ -4,7 +4,7 @@ import calculator.interfaces.ICalc;
 
 public class Multiplication implements ICalc {
     @Override
-    public double calc(double[] values) {
+    public double process(double[] values) {
         if(values.length == 0) return 0;
         if(values.length == 1) return values[0];
         double result = 0;
