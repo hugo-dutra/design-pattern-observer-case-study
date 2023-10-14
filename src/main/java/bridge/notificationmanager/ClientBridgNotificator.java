@@ -1,10 +1,10 @@
-package bridge;
+package bridge.notificationmanager;
 
-import bridge.implementations.EmailNotification;
-import bridge.implementations.NotificationsSender;
-import bridge.implementations.PushNotification;
-import bridge.implementations.SmsNotification;
-import bridge.interfaces.INotification;
+import bridge.notificationmanager.implementations.EmailNotification;
+import bridge.notificationmanager.implementations.NotificationsSender;
+import bridge.notificationmanager.implementations.PushNotification;
+import bridge.notificationmanager.implementations.SmsNotification;
+import bridge.notificationmanager.interfaces.INotification;
 
 public class ClientBridgNotificator {
     public static void main(String[] args) {
@@ -20,7 +20,5 @@ public class ClientBridgNotificator {
         INotification notification3 = new SmsNotification();
         NotificationsSender notificationsSender3 = new NotificationsSender(notification3);
         notificationsSender3.send("title", "message", "recipient");
-
-
     }
 }

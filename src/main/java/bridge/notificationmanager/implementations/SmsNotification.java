@@ -1,6 +1,6 @@
-package bridge.implementations;
+package bridge.notificationmanager.implementations;
 
-import bridge.interfaces.INotification;
+import bridge.notificationmanager.interfaces.INotification;
 
 public class SmsNotification implements INotification {
     @Override

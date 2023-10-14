@@ -1,7 +1,7 @@
-package bridge.implementations;
+package bridge.notificationmanager.implementations;
 
-import bridge.interfaces.AbstractNotifier;
-import bridge.interfaces.INotification;
+import bridge.notificationmanager.interfaces.AbstractNotifier;
+import bridge.notificationmanager.interfaces.INotification;
 
 public class NotificationsSender extends AbstractNotifier {
 

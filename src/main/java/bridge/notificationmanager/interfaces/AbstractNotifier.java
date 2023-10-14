@@ -1,4 +1,4 @@
-package bridge.interfaces;
+package bridge.notificationmanager.interfaces;
 
 public abstract class AbstractNotifier {
     protected INotification notification;
