@@ -1,0 +1,3 @@
+This is a line logged
+This is another line logged
+This is a third line logged
