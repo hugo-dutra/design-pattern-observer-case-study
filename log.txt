@@ -1,0 +1,4 @@
+TextLogger: 2023-10-16T13:13:49.796785400 - TXT - Message log from file with raw text content...
+
+{"date": "2023-10-16T13:13:49.797823800", "type": "JSON", "message": "Message log from file with JSON content..."}
+
